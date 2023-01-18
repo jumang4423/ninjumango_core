@@ -4,7 +4,7 @@ import os
 import random
 from riffusion.cli import image_to_audio
 import json
-from datetime import datetimel
+from datetime import datetime
 import sys
 
 def load_json(json_filepath):
@@ -21,7 +21,7 @@ def load_json(json_filepath):
 def out_json(json_filepath, audio_dir):
     # { audio_dir: ["/content/hoge.wav", "/content/fuga.wav"] }
     data = {
-        "audio_dir": audio_dir
+        "audio_dirs": audio_dir
     }
     with open(json_filepath, 'w') as outfile:
         json.dump(data, outfile)

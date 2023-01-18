@@ -5,7 +5,7 @@ import os
 import random
 from riffusion.cli import image_to_audio, audio_to_image
 import json
-from datetime import datetimel
+from datetime import datetime
 import sys
 import requests
 from PIL import Image
