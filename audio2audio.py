@@ -81,3 +81,4 @@ image.save(img_dir)
 randomNumber = random.randint(0, 1000)
 audio_out_dir=audio_out_dir + "/" + getDayStr() + "_" + Path(audio_file).stem + "_" + prompt.replace(" ", "_") + str(randomNumber) + ".wav"
 image_to_audio(image=img_dir, audio=audio_out_filepath)
+out_json(arg2, audio_out_dir)
