@@ -3,7 +3,7 @@ from diffusers import StableDiffusionImg2ImgPipeline
 import torch
 import os
 import random
-from riffusion.img2audio import image_to_audio, audio_to_image
+from riffusion.cli import image_to_audio, audio_to_image
 import json
 from datetime import datetimel
 import sys
@@ -24,7 +24,15 @@ def load_json(json_filepath):
 
     return model_id, audio_out_dir, hugging_face_token, audio_file, prompt, negative_prompt
 
+def out_json(json_filepath, audio_dir):
+    data = {
+        "audio_dir": audio_dir
+    }
+    with open(json_filepath, 'w') as outfile:
+        json.dump(data, outfile)
+
 arg1 = sys.argv[1]
+arg2 = sys.argv[2]
 model_id, audio_out_dir, hugging_face_token, audio_file, prompt, negative_prompt = load_json(arg1)
 
 scheduler = DPMSolverMultistepScheduler(

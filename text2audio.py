@@ -2,7 +2,7 @@ from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
 import torch
 import os
 import random
-from riffusion.img2audio import image_to_audio
+from riffusion.cli import image_to_audio
 import json
 from datetime import datetimel
 import sys
@@ -18,7 +18,20 @@ def load_json(json_filepath):
 
     return model_id, audio_out_dir, hugging_face_token, prompts, negative_prompts
 
+def out_json(json_filepath, audio_dir):
+    # { audio_dir: ["/content/hoge.wav", "/content/fuga.wav"] }
+    data = {
+        "audio_dir": audio_dir
+    }
+    with open(json_filepath, 'w') as outfile:
+        json.dump(data, outfile)
+
+
+    
+
+
 arg1 = sys.argv[1]
+arg2 = sys.argv[2]
 model_id, audio_out_dir, hugging_face_token, prompts, negative_prompts = load_json(arg1)
 
 scheduler = DPMSolverMultistepScheduler(
@@ -51,6 +64,8 @@ def getDayStr():
   now = datetime.now()
   return now.strftime("%y%m%d%H%M%S")
 
+audio_file_dir = []
+
 for i, prompt in enumerate(prompts):
     image = pipe(
         prompt,
@@ -65,3 +80,6 @@ for i, prompt in enumerate(prompts):
     randomNumber = random.randint(0, 1000)
     audio_out_filepath=audio_out_dir + "/" + getDayStr() + "_" + prompts[i].replace(" ", "_") + str(randomNumber) + ".wav"
     image_to_audio(image=img_dir, audio=audio_out_filepath)
+    audio_file_dir.append(audio_out_filepath)
+
+out_json(arg2, audio_file_dir)
