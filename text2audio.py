@@ -26,10 +26,6 @@ def out_json(json_filepath, audio_dir):
     with open(json_filepath, 'w') as outfile:
         json.dump(data, outfile)
 
-
-    
-
-
 arg1 = sys.argv[1]
 arg2 = sys.argv[2]
 model_id, audio_out_dir, hugging_face_token, prompts, negative_prompts = load_json(arg1)
@@ -52,7 +48,6 @@ pipe = StableDiffusionPipeline.from_pretrained(
     use_auth_token=hugging_face_token,
     scheduler=scheduler
 )
-pipe = pipe.to("cuda")
 
 height = 512
 width = 512

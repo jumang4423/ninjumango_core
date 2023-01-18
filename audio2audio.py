@@ -53,7 +53,6 @@ pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
     use_auth_token=hugging_face_token,
     scheduler=scheduler
 )
-pipe = pipe.to("cuda")
 
 height = 512
 width = 512
