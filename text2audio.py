@@ -64,7 +64,7 @@ audio_file_dir = []
 for i, prompt in enumerate(prompts):
     image = pipe(
         prompt,
-        negative_prompts=negative_prompts[i],
+        negative_prompt=negative_prompts[i],
         num_inference_steps=25,
         guidance_scale=7.5,
         height=height, width=width,
@@ -78,3 +78,4 @@ for i, prompt in enumerate(prompts):
     audio_file_dir.append(audio_out_filepath)
 
 out_json(arg2, audio_file_dir)
+
