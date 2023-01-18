@@ -6,6 +6,7 @@ diffusers>=0.9.0
 flask
 flask_cors
 numpy
+pillow>=9.1.0
 plotly
 pydub
 scipy
@@ -15,3 +16,4 @@ streamlit>=1.10.0
 torch
 torchaudio
 transformers
+gradio
